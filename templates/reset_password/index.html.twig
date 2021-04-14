@@ -1,0 +1,54 @@
+{# {% extends 'base.html.twig' %}
+
+    {% block title %}Hello ResetPasswordController!{% endblock %}
+
+    {% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a href="{{ 'C:/Users/soline/PERSONNEL/TRAVAIL/FORMATION/UDEMY/SYMFONY 5/MesProjets/laboutiquefrancaise/src/Controller/ResetPasswordController.php'|file_link(0) }}">src/Controller/ResetPasswordController.php</a></code></li>
+            <li>Your template at <code><a href="{{ 'C:/Users/soline/PERSONNEL/TRAVAIL/FORMATION/UDEMY/SYMFONY 5/MesProjets/laboutiquefrancaise/templates/reset_password/index.html.twig'|file_link(0) }}">templates/reset_password/index.html.twig</a></code></li>
+        </ul>
+    </div>
+    {% endblock %} #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - La Boutique Française{% endblock %}
+
+{% block content %}
+    <div class="block-small">
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        <form method="post">
+            {# sera fait ds le controller l'acces ou non à cette vue
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %} 
+            #}
+
+            <h1 class="h3 mb-3 font-weight-normal">Réinitialiser mon mot de passe</h1>
+            <label for="inputEmail">Your Email</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Votre adresse email" required autofocus>
+            
+            <button class="btn btn-lg btn-info btn-block mt-3" type="submit">
+                Valider
+            </button>
+            <hr>
+            <p class="text-center">Ou souhaitez-vous <a href="{{path('app_login')}}">vous connecter</a> ?</p>
+        </form>
+    </div>
+{% endblock %}

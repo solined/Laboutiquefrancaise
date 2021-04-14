@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - La Boutique Française{% endblock %}
+
+{% block content %}
+    <h2>Je passe ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande sur La Boutique Française.</p>
+    <hr>
+     <div class="row">
+        <div class="col-md-6">
+            {# <b>Choisir mon adresse de livraison</b><br/>  c'est ds le label de form OrderType #}
+            {% set formHtml %}
+                {# {{form(form)}} #}
+                {# pour ajouter une route à l'action choisit ds le form (ordertype) #}
+                {{ form_start(form, {action:path('order_recap')}) }} {# https://symfony.com/doc/current/form/form_customization.html#form-rendering-functions #}
+                    {{ form_label(form.addresses, 'Choisissez une adresse de livraison') }}
+                    <a href="{{path('account_address_add')}}">Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
+            {% endset %}
+
+            {{formHtml | replace({'[br]' : '<br/>'})|raw }}
+            {# {{ dump(controller_name) }} #}
+        </div>
+        <div class="col-md-6">
+            <div class="text-center border-left">
+                <b>Récap de ma commande</b><br/>
+                <p>Retrouvez le récapitulatif de vos produits</p>
+            </div>
+            <div class="order-summary border-left">
+                {% for key,products in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-2">
+                            <img src="/uploads/{{ products.product.illustration }}" alt="{{ products.product.name }}" height="75px">
+                        </div>
+                        <div class="col-8 my-auto">
+                            {{ products.product.name }}<br/>
+                            <small>{{ products.product.subtitle }}</small>
+                        </div>
+                        <div class="col-2 my-auto">
+                            x {{ products.quantity }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {# {{ dump(cart) }} #}
+        </div>
+    </div>
+{% endblock %}

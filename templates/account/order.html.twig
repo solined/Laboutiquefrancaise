@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes - La Boutique Française{% endblock %}
+
+{% block content %}
+    <h1>Mon commandes</h1>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos commandes.
+    <a href="{{ path('account') }}">Retour vers mon compte</a>
+    
+    {# si l'utilisateur n'a pas de commandes, message sinon afficher  #}
+    {% if orders|length == 0 and table|length == 0 %}
+        <hr>
+        <p class="text-center">
+            Vous n'avez pas encore passé de commande sur La Boutique Française.
+        </p>
+    {% else %}
+        {# Affiche les commandes payées, de la plus récentes à la plus anciennes #}
+         <table class="table mt-3">
+            <thead>
+                {{ tablehead | raw }}
+            </thead>
+            <tbody>
+                {{ table | raw }}
+            </tbody>
+        </table>
+    {% endif %}
+    <hr>
+{% endblock %}

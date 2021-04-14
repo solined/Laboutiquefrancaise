@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Inscription</h1>
+
+    {% if notification %}
+        <dib classs="alert alert-info">{{ notification }}</div>
+        <hr>
+    {% endif %}
+    {# La fonction form () rend tous les champs et les <form>balises de début et de fin. 
+    Par défaut, la méthode du formulaire est POSTet l'URL cible est la même que celle qui a affiché le formulaire, 
+    mais vous pouvez modifier les deux . #}
+    {{form(form)}} 
+    
+{% endblock %}
