@@ -67,11 +67,11 @@ class RegisterController extends AbstractController
                 //$mail = new Mail; $mail->sendEmailSuccess($user);
                 
                 // Affiche une notification succes
-                $notification = "Votre inscription s'est correctement effectuée. Vous pouvez dès à présent vous connecter à votre compte.</br>";
+                $notification = "Votre inscription s'est correctement effectuée. Vous pouvez dès à présent vous connecter à votre compte.";
             } else {
                 // Affiche une notification error
                 //$notification = "L'email que vous renseigné ".$search_email->getEmail()." existe déjà.</br>";   //mode dev
-                $notification = "L'email que vous renseigné existe déjà.</br>";
+                $notification = "L'email que vous renseigné existe déjà.";
             }
         }
 
@@ -79,10 +79,8 @@ class RegisterController extends AbstractController
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(),
             'notification' => $notification
+            //'controller_name' => 'RegisterController',
         ]);
-        /* return $this->render('register/index.html.twig', [
-            'controller_name' => 'RegisterController',
-        ]); */
     }
 
     /**
@@ -91,7 +89,8 @@ class RegisterController extends AbstractController
     public function sendEmailSuccess(User $user) {
         $mail    = new Mail();
 
-        $content = "Bonjour ".$user->getFirstname().",<br/><br/>Bienvenue sur la première boutique dédiée au Made in France.<br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis sapien nec velit volutpat aliquam. Nulla at sapien dui. Integer tincidunt pulvinar mi ut placerat. Duis at massa vel velit tristique iaculis at at neque. Fusce lobortis, mi sit amet placerat tristique, quam justo ornare elit, et bibendum turpis metus quis nisi. Pellentesque interdum lectus sed quam semper tincidunt. Nunc efficitur eros ut dolor convallis volutpat. Etiam placerat massa non urna dictum placerat.";
+        $content = "Bonjour ".$user->getFirstname().",<br/><br/>";
+        $content .= "Bienvenue sur la première boutique dédiée au Made in France.<br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis sapien nec velit volutpat aliquam. Nulla at sapien dui. Integer tincidunt pulvinar mi ut placerat. Duis at massa vel velit tristique iaculis at at neque. Fusce lobortis, mi sit amet placerat tristique, quam justo ornare elit, et bibendum turpis metus quis nisi. Pellentesque interdum lectus sed quam semper tincidunt. Nunc efficitur eros ut dolor convallis volutpat. Etiam placerat massa non urna dictum placerat.";
         $content .= "<br/><br/>Cordialement,<br/><br/>";
         $content .= "La boutique Française";
 
